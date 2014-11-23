@@ -1,0 +1,30 @@
+<html>
+<head>
+<title>Web Voxel Viewer</title>
+</head>
+
+<body>
+	<script src="src/lib/three.min.js"></script>
+	<script src="src/map.js"></script>
+	<script src="src/graphics.js"></script>
+	<script src="src/showObject.js"></script>
+	<script>
+	var map = new Map();
+
+	for( var x=-4; x<7; x++ ) {
+		map.setBlock(x,0,0,"cobble");
+		map.setBlock(x,0,1,"redstone");
+		map.setBlock(x,0,2,"stone");
+	}
+	for( var y=0; y<20; y++ ) {
+		map.setBlock(0,y,0,"redstone");
+		map.setBlock(4,y,3,"cobble");
+	}
+
+	var graphics = new GraphicsRenderer( 'src/assets' );
+	var mapGeometry = graphics.getMapGeometry( map );
+	showObject( mapGeometry );
+
+	</script>
+</body>
+</html>
