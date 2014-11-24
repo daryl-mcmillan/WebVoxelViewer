@@ -11,8 +11,6 @@ function GraphicsRenderer( assetPath ) {
   		var texture = THREE.ImageUtils.loadTexture( _assetPath + 'redstone_dust.png' );
   		var material = new THREE.MeshLambertMaterial( { map: texture, transparent: true } );
   		var geometry = new THREE.Geometry();
-  		var up = new THREE.Vector3( 0, 1, 0 );
-  		var down = new THREE.Vector3( 0, -1, 0 );
   		geometry.vertices.push(
   		  new THREE.Vector3(-0.5,-0.4,-0.5),
   		  new THREE.Vector3(-0.5,-0.4, 0.5),
@@ -20,10 +18,10 @@ function GraphicsRenderer( assetPath ) {
   		  new THREE.Vector3( 0.5,-0.4,-0.5)
   		);
   		geometry.faces.push(
-  		  new THREE.Face3( 0, 1, 2, up ),
-  		  new THREE.Face3( 0, 2, 3, up ),
-  		  new THREE.Face3( 2, 1, 0, down ),
-  		  new THREE.Face3( 3, 2, 0, down )
+  		  new THREE.Face3( 0, 1, 2 ),
+  		  new THREE.Face3( 0, 2, 3 ),
+  		  new THREE.Face3( 2, 1, 0 ),
+  		  new THREE.Face3( 3, 2, 0 )
   		);
   		var textureCoords = [
         [
@@ -45,6 +43,7 @@ function GraphicsRenderer( assetPath ) {
         ]
   		];
   		geometry.faceVertexUvs[0] = textureCoords;
+  		geometry.computeFaceNormals();
   		var surface = new THREE.Mesh( geometry, material );
   		return surface;
 		} else {
