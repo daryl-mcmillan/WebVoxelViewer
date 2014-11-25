@@ -3,12 +3,12 @@ function Map() {
 	var getKey = function( x, y, z ) {
 		return x.toString() + ',' + y.toString() + ',' + z.toString();
 	};
-	this.setBlock = function( x, y, z, type ) {
+	this.setBlock = function( x, y, z, type, data ) {
 		var key = getKey( x, y, z );
 		blocks[ key ] = {
 			position: { x:x, y:y, z:z },
 			type: type,
-			data: {}
+			data: data || {}
 		};
 	};
 	this.visitBlocks = function( visitor ) {
