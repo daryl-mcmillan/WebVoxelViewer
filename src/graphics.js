@@ -14,8 +14,8 @@ function GraphicsRenderer( assetPath ) {
 
 			var none = new THREE.Geometry();
 			none.vertices.push(
+				new THREE.Vector3(  0.5, -0.48, -0.5),
 				new THREE.Vector3( -0.5, -0.48, -0.5),
-				new THREE.Vector3( -0.5, -0.48,  0.5),
 				new THREE.Vector3(    0, -0.48,    0)
 			);
 			none.faces.push(
@@ -32,8 +32,8 @@ function GraphicsRenderer( assetPath ) {
 
 			var side = new THREE.Geometry();
 			side.vertices.push(
+				new THREE.Vector3(  0.5, -0.5,  -0.5),
 				new THREE.Vector3( -0.5, -0.5, -0.5),
-				new THREE.Vector3( -0.5, -0.5,  0.5),
 				new THREE.Vector3(    0, -0.48,    0)
 			);
 			side.faces.push(
@@ -50,11 +50,11 @@ function GraphicsRenderer( assetPath ) {
 
 			var up = new THREE.Geometry();
 			up.vertices.push(
+				new THREE.Vector3(  0.48, -0.48, -0.48),
 				new THREE.Vector3( -0.48, -0.48, -0.48),
-				new THREE.Vector3( -0.48, -0.48,  0.48),
 				new THREE.Vector3(    0, -0.48,    0),
-				new THREE.Vector3( -0.5,  0.5,  0.5),
-				new THREE.Vector3( -0.5,  0.5, -0.5)
+				new THREE.Vector3( -0.5,  0.5, -0.5),
+				new THREE.Vector3(  0.5,  0.5, -0.5)
 			);
 			up.faces.push(
 				new THREE.Face3( 0, 1, 2 ),
@@ -78,22 +78,22 @@ function GraphicsRenderer( assetPath ) {
 			];
 			up.computeFaceNormals();
 
-			var dirs = {
+			var styles = {
 				none: none,
 				side: side,
 				up: up
 			};
 
-			var west = new THREE.Matrix4();
-			var north = new THREE.Matrix4(); north.makeRotationY(Math.PI*1.5);
-			var east = new THREE.Matrix4(); east.makeRotationY(Math.PI);
-			var south = new THREE.Matrix4(); south.makeRotationY(Math.PI*0.5);
+			var north = new THREE.Matrix4();
+			var east = new THREE.Matrix4(); east.makeRotationY(Math.PI*1.5);
+			var south = new THREE.Matrix4(); south.makeRotationY(Math.PI);
+			var west = new THREE.Matrix4(); west.makeRotationY(Math.PI*0.5);
 
 			var geometry = new THREE.Geometry();
-			geometry.merge( dirs[data.west] || none, west );
-			geometry.merge( dirs[data.north] || none, north );
-			geometry.merge( dirs[data.east] || none, east );
-			geometry.merge( dirs[data.south] || none, south );
+			geometry.merge( styles[data.north] || none, north );
+			geometry.merge( styles[data.south] || none, south );
+			geometry.merge( styles[data.east] || none, east );
+			geometry.merge( styles[data.west] || none, west );
 			var surface = new THREE.Mesh( geometry, material );
 			return surface;
 

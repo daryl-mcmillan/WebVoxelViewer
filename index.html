@@ -18,7 +18,15 @@
 		map.setBlock(x,0,2,"stone");
 	}
 
-	map.setBlock(-4,0,3,"redstone_wire", {east:"side"});
+	map.setBlock(-1,1,0,"redstone_wire", {east:"side",west:"side"});
+	map.setBlock(-2,1,0,"redstone_wire", {east:"side",west:"side"});
+	map.setBlock(-3,1,0,"redstone_wire", {east:"side",west:"side"});
+	map.setBlock(-4,1,0,"redstone_wire", {east:"side",west:"side"});
+	map.setBlock(-5,0,0,"redstone_wire", {east:"up",south:"side"});
+	map.setBlock(-5,0,1,"redstone_wire", {north:"side",south:"side"});
+	map.setBlock(-5,0,2,"redstone_wire", {north:"side",south:"side"});
+	map.setBlock(-5,0,3,"redstone_wire", {north:"side",east:"side"});
+	map.setBlock(-4,0,3,"redstone_wire", {west:"side",east:"side"});
 	map.setBlock(-3,0,3,"redstone_wire", {west:"side",north:"up"});
 	map.setBlock(-3,1,2,"redstone_wire", {south:"side",east:"side"});
 	map.setBlock(-2,1,2,"redstone_wire", {west:"side",east:"side"});
